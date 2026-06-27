@@ -1,0 +1,9 @@
+Invoice_ID,Vendor_Name,Target_Warehouse_ID,Item_SKU,Item_Name,Expected_Quantity
+INV-2001,GreenValley Produce,WH-DEL-01,SKU-MANGO-010,Alphonso Mango,120
+INV-2001,GreenValley Produce,WH-DEL-01,SKU-ORANGE-011,Nagpur Orange,90
+INV-2001,GreenValley Produce,WH-DEL-01,SKU-GRAPE-012,Green Seedless Grape,60
+INV-2002,SunFresh Exports,WH-MUM-01,SKU-POTATO-020,Pukhraj Potato,200
+INV-2002,SunFresh Exports,WH-MUM-01,SKU-ONION-021,Nashik Red Onion,150
+INV-2003,Hillside Organics,WH-BLR-01,SKU-CARROT-030,Ooty Carrot,75
+INV-2003,Hillside Organics,WH-BLR-01,SKU-SPINACH-031,Baby Spinach Bunch,40
+INV-2003,Hillside Organics,WH-BLR-01,SKU-CAPSICUM-032,Bell Pepper Mix,55
