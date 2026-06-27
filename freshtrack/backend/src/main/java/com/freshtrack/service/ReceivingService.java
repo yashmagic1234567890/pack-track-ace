@@ -27,8 +27,6 @@ public class ReceivingService {
     private final AuditService auditService;
 
     @Transactional
-    @Retryable(retryFor = OptimisticLockingFailureException.class,
-            maxAttempts = 4, backoff = @Backoff(delay = 50))
     public ScanResultDto scan(ScanRequest req, User user) {
         Invoice invoice = loadAndAuthorize(req.invoiceId(), req.warehouseCode(), user);
 
