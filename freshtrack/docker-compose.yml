@@ -1,0 +1,30 @@
+services:
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: freshtrack
+    ports: ["3306:3306"]
+    volumes:
+      - ./database/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-proot"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  backend:
+    build: ./backend
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/freshtrack?allowPublicKeyRetrieval=true&useSSL=false
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+    ports: ["8080:8080"]
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+  frontend:
+    build: ./frontend
+    ports: ["5173:5173"]
+    depends_on: [backend]
