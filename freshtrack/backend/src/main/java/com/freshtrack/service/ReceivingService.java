@@ -9,9 +9,6 @@ import com.freshtrack.exception.ResourceNotFoundException;
 import com.freshtrack.repository.InvoiceLineRepository;
 import com.freshtrack.repository.InvoiceRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.retry.annotation.Backoff;
-import org.springframework.retry.annotation.Retryable;
-import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
