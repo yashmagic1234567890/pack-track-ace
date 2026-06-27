@@ -2,8 +2,11 @@ package com.freshtrack.controller;
 
 import com.freshtrack.dto.DashboardStatsDto;
 import com.freshtrack.dto.WarehouseDto;
+import com.freshtrack.entity.Role;
+import com.freshtrack.entity.User;
 import com.freshtrack.service.DashboardService;
 import com.freshtrack.service.UserService;
+import com.freshtrack.service.WarehouseService;
 import com.freshtrack.util.SecurityUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +24,7 @@ public class DashboardController {
 
     private final DashboardService dashboardService;
     private final UserService userService;
+    private final WarehouseService warehouseService;
     private final SecurityUtils securityUtils;
 
     @GetMapping("/stats")
@@ -31,6 +35,11 @@ public class DashboardController {
     /** Warehouses the current user can operate in (for selection dropdowns). */
     @GetMapping("/my-warehouses")
     public ResponseEntity<List<WarehouseDto>> myWarehouses() {
-        return ResponseEntity.ok(userService.toWarehouseDtos(securityUtils.currentUser()));
+        User user = securityUtils.currentUser();
+        if (user.getRole() == Role.CENTRAL_ADMIN) {
+            return ResponseEntity.ok(warehouseService.listAll());
+        }
+        return ResponseEntity.ok(userService.toWarehouseDtos(user));
     }
 }
+
