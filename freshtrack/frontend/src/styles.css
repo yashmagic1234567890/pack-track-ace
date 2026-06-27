@@ -41,7 +41,7 @@ body {
 .login-card label { font-size: 13px; color: var(--muted); margin-top: 8px; }
 .login-hint { display: flex; justify-content: space-between; color: var(--muted); font-size: 12px; margin-top: 10px; }
 
-.brand-mark { color: #5fd0 e0; }
+.brand-mark { color: #5fd0e0; }
 .brand-mark.big { font-size: 40px; color: #5fd0e0; }
 
 /* ---- Layout ---- */
