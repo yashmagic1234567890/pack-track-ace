@@ -49,8 +49,6 @@ public class ReceivingService {
     }
 
     @Transactional
-    @Retryable(retryFor = OptimisticLockingFailureException.class,
-            maxAttempts = 4, backoff = @Backoff(delay = 50))
     public ScanResultDto adjust(ManualAdjustRequest req, User user) {
         Invoice invoice = loadAndAuthorize(req.invoiceId(), req.warehouseCode(), user);
 
