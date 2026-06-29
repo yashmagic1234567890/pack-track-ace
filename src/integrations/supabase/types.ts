@@ -269,9 +269,28 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      admin_assign_warehouse: {
+        Args: { _user_id: string; _warehouse_id: string }
+        Returns: undefined
+      }
+      admin_remove_warehouse: {
+        Args: { _user_id: string; _warehouse_id: string }
+        Returns: undefined
+      }
+      admin_set_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: undefined
+      }
       can_access_warehouse: {
         Args: { _user_id: string; _warehouse_id: string }
         Returns: boolean
+      }
+      ensure_user_setup: {
+        Args: never
+        Returns: Database["public"]["Enums"]["app_role"]
       }
       has_role: {
         Args: {
@@ -281,6 +300,27 @@ export type Database = {
         Returns: boolean
       }
       is_central_admin: { Args: { _user_id: string }; Returns: boolean }
+      scan_receive: {
+        Args: { _delta?: number; _line_id: string; _via?: string }
+        Returns: {
+          barcode: string | null
+          created_at: string
+          expected_qty: number
+          id: string
+          invoice_id: string
+          product_name: string
+          received_qty: number
+          sku: string
+          unit: string | null
+          updated_at: string
+        }
+        SetofOptions: {
+          from: "*"
+          to: "invoice_lines"
+          isOneToOne: true
+          isSetofReturn: false
+        }
+      }
     }
     Enums: {
       app_role: "central_admin" | "hub_user"
